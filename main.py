@@ -61,6 +61,8 @@ def main_zpnn(args):
         net = networks.DRPNN(s.nbands + 1)
     elif 'PanNet' in method:
         net = networks.PanNet(s.nbands, s.ratio)
+    elif 'ENet-V5' in method:
+      net = networks.EfficientNet('b3',(s.nbands + 1))
     else:
         net = networks.PNN(s.nbands + 1, s.kernels, s.net_scope)
 
@@ -124,7 +126,7 @@ def main_zpnn(args):
 
     # Fitting strategy definition
     net = net.to(device)
-    if 'DRPNN' in method:
+    if 'DRPNN' in method or 'Enet' in method:
         params = []
         base_params = []
         for i, k in net.named_parameters():
@@ -278,7 +280,7 @@ Image Processing Research Group of University Federico II of Naples
 
     requiredNamed.add_argument('-m', '--method', type=str, required=True, choices=["A-PNN-TA-FR", "Z-PNN",
                                                                                    "PanNet-TA-FR", "Z-PanNet",
-                                                                                   "DRPNN-TA-FR", "Z-DRPNN"],
+                                                                                   "DRPNN-TA-FR", "Z-DRPNN","ENet-V5"],
                                default="Z-PNN", help='The algorithm with which perform Pansharpening.')
 
     default_out_path = 'Outputs/'
