@@ -62,7 +62,7 @@ def main_zpnn(args):
     elif 'PanNet' in method:
         net = networks.PanNet(s.nbands, s.ratio)
     elif 'ENet-V5' in method:
-      net = networks.EfficientNet('b3',(s.nbands + 1))
+      net = networks.EfficientNet('b2',(s.nbands + 1))
     else:
         net = networks.PNN(s.nbands + 1, s.kernels, s.net_scope)
 
