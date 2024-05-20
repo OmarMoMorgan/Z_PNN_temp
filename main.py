@@ -208,7 +208,7 @@ def main_zpnn(args):
         history_loss_spec[epoch] = running_spec_loss
         history_loss_struct[epoch] = running_struct_loss
         pbar.set_postfix(
-            {'Overall Loss': running_loss, 'Spectral Loss': running_spec_loss, 'Structural Loss': running_struct_loss})
+            {'Overall Loss': min_loss, 'Spectral Loss': running_spec_loss, 'Structural Loss': running_struct_loss})
 
     # Output Folder creation
 
